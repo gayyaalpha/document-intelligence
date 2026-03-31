@@ -1,0 +1,57 @@
+[project]
+name = "doc-intel"
+version = "0.1.0"
+description = "Document Intelligence: extract structured data from documents using Azure Document Intelligence and vision models"
+requires-python = ">=3.11"
+
+dependencies = [
+    "azure-ai-documentintelligence>=1.0.0",
+    "pydantic>=2.0",
+    "pydantic-settings>=2.0",
+    "python-dotenv>=1.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "pytest-cov",
+    "ruff",
+    "mypy",
+    "ipykernel",
+]
+vision = [
+    # Phase 2: fine-tuned vision model backend
+    # "transformers>=4.40",
+    # "torch>=2.2",
+    # "pillow>=10.0",
+]
+api = [
+    # Phase 2: REST API with live demo
+    # "fastapi>=0.110",
+    # "uvicorn[standard]>=0.29",
+    # "python-multipart>=0.0.9",
+]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.backends.legacy:build"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["doc_intel*"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP"]
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "--cov=doc_intel --cov-report=term-missing"

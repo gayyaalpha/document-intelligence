@@ -1,0 +1,35 @@
+# Secrets
+.env
+
+# Document inputs/outputs (may contain sensitive or large binary files)
+inputs/*
+outputs/*
+!inputs/.gitkeep
+!outputs/.gitkeep
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+venv/
+*.egg-info/
+dist/
+build/
+.mypy_cache/
+.ruff_cache/
+.pytest_cache/
+htmlcov/
+.coverage
+
+# Jupyter
+.ipynb_checkpoints/
+notebooks/.ipynb_checkpoints/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
