@@ -58,18 +58,13 @@ def main() -> None:
         print(f"Error: file not found: {file_path}", file=sys.stderr)
         sys.exit(1)
 
-    # Override model ID via CLI if provided
-    if args.model_id:
-        import os
-
-        os.environ["AZURE_DI_MODEL_ID"] = args.model_id
-
     from doc_intel.pipeline.runner import run
 
     try:
         result, output_path = run(
             file_path,
             extractor_name=args.extractor,
+            model_id=args.model_id,
             output_dir=args.output_dir,
             write_output=not args.dry_run,
         )

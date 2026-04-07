@@ -22,11 +22,11 @@ if TYPE_CHECKING:
 # (torch, transformers) until they're actually needed.
 
 
-def _get_extractor(name: str) -> "BaseExtractor":
+def _get_extractor(name: str, model_id: str | None = None) -> "BaseExtractor":
     if name == "azure":
         from doc_intel.extractors.azure_doc_intel import AzureDocIntelExtractor
 
-        return AzureDocIntelExtractor()
+        return AzureDocIntelExtractor(model_id=model_id)
     if name == "vision":
         from doc_intel.extractors.vision_model import VisionModelExtractor
 
@@ -43,6 +43,7 @@ def run(
     file_path: Path,
     *,
     extractor_name: str | None = None,
+    model_id: str | None = None,
     output_dir: Path | None = None,
     write_output: bool = True,
 ) -> tuple[ExtractionResult, Path | None]:
@@ -61,7 +62,7 @@ def run(
     extractor_name = extractor_name or settings.default_extractor
     output_dir = output_dir or settings.output_dir
 
-    extractor = _get_extractor(extractor_name)
+    extractor = _get_extractor(extractor_name, model_id=model_id)
 
     if not extractor.supports(file_path):
         raise ValueError(
