@@ -1,6 +1,9 @@
 # Secrets
 .env
 
+# Local experimentation
+playground.py
+
 # Document inputs/outputs (may contain sensitive or large binary files)
 inputs/*
 outputs/*
