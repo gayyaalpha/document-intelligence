@@ -24,7 +24,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--extractor",
         default=None,
-        choices=["azure", "vision"],
+        choices=["azure", "claude", "vision"],
         help="Extraction backend to use (default: from .env DEFAULT_EXTRACTOR)",
     )
     parser.add_argument(
@@ -32,8 +32,10 @@ def parse_args() -> argparse.Namespace:
         default=None,
         dest="model_id",
         help=(
-            "Azure DI model ID to use, e.g. prebuilt-layout, prebuilt-invoice "
-            "(overrides AZURE_DI_MODEL_ID in .env)"
+            "Backend-specific model ID. For --extractor azure: prebuilt-layout, "
+            "prebuilt-invoice, etc. (overrides AZURE_DI_MODEL_ID). "
+            "For --extractor claude: claude-opus-4-6, claude-sonnet-4-6, etc. "
+            "(overrides ANTHROPIC_MODEL)."
         ),
     )
     parser.add_argument(

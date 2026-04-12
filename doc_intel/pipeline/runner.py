@@ -27,12 +27,16 @@ def _get_extractor(name: str, model_id: str | None = None) -> "BaseExtractor":
         from doc_intel.extractors.azure_doc_intel import AzureDocIntelExtractor
 
         return AzureDocIntelExtractor(model_id=model_id)
+    if name == "claude":
+        from doc_intel.extractors.claude_vision import ClaudeVisionExtractor
+
+        return ClaudeVisionExtractor(model=model_id)
     if name == "vision":
         from doc_intel.extractors.vision_model import VisionModelExtractor
 
         return VisionModelExtractor()
     raise ValueError(
-        f"Unknown extractor '{name}'. Available: azure, vision"
+        f"Unknown extractor '{name}'. Available: azure, claude, vision"
     )
 
 

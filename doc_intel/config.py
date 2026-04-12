@@ -28,7 +28,16 @@ class Settings(BaseSettings):
     # Extraction backend
     default_extractor: str = Field(
         default="azure",
-        description="Default extraction backend: 'azure' or 'vision'",
+        description="Default extraction backend: 'azure', 'vision', or 'claude'",
+    )
+
+    # Anthropic / Claude Vision
+    anthropic_api_key: str = Field(
+        default="", description="Anthropic API key for Claude Vision backend"
+    )
+    anthropic_model: str = Field(
+        default="claude-opus-4-6",
+        description="Anthropic model ID used by the Claude Vision extractor",
     )
 
     # Paths
